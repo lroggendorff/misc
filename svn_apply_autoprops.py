@@ -11,18 +11,19 @@
 #
 # Author: Matthew Good <svn@matt-good.net>
 
+from __future__ import generators
+
 CMD = 'svn'
 #CMD = 'svk'
 CFG = ['/etc/subversion/config',
        '~/.subversion/config',
        '$APPDATA/Subversion/config']
 
-from __future__ import generators
 
 import ConfigParser
 import os.path
 import fnmatch
-import popen2
+import subprocess
 
 def versionedfiles(dir):
     out, _ = popen2.popen2('%s status -v %s' % (CMD, dir.replace(' ', '\\ ')))
